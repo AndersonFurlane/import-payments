@@ -1,0 +1,25 @@
+default: &default
+  adapter: postgresql
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+development:
+  <<: *default
+  database: import_payments_development
+  encoding: utf8
+  username: <%= ENV["DATABASE_USERNAME"] || 'postgres' %>
+  password: <%= ENV["DATABASE_PASSWORD"] || '' %>
+  host: <%= ENV["DATABASE_HOST"] || 'localhost' %>
+
+test:
+  <<: *default
+  database: import_payments_test
+  encoding: utf8
+  username: <%= ENV["DATABASE_USERNAME"] || 'postgres' %>
+  password: <%= ENV["DATABASE_PASSWORD"] || '' %>
+  host: <%= ENV["DATABASE_HOST"] || 'localhost' %>
+
+production:
+  <<: *default
+  database: import_payments_production
+  username: <%= ENV["DATABASE_USERNAME"] || 'import_payments' %>
+  password: <%= ENV["DATABASE_PASSWORD"] || '' %>
